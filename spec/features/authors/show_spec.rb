@@ -3,8 +3,11 @@ require 'rails_helper'
 RSpec.describe 'the authors show page' do
   describe 'attributes' do
     before :each do
-      @author = Author.create!(name: "Jane Austen", currently_alive: false)
-      @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false)
+      @author = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+      @author_2 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
+      @book_1 = @author_2.books
+      .create!(name: "Her Body and Other Parties", length: 380, in_print: true)
+      @book_2 = @author_2.books.create!(name: "In the Dream House", length: 321, in_print: true)
     end
 
     it 'displays the author name' do
@@ -37,6 +40,12 @@ RSpec.describe 'the authors show page' do
       visit "/authors/#{@author.id}"
 
       expect(page).to have_content(@author.id)
+    end
+
+    it 'shows the total count of books by the author' do
+      visit "/authors/#{@author_2.id}"
+
+      expect(page).to have_content("Total number of books for Carmen Maria Machado: 2")
     end
   end
 end
