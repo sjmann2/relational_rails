@@ -25,5 +25,18 @@ RSpec.describe 'the authors show page' do
 
       expect(page).to have_content(@author.currently_alive)
     end
+
+    it 'displays created at and updated at time stamps' do
+      visit "/authors/#{@author.id}"
+      
+      expect(page).to have_content(@author.created_at)
+      expect(page).to have_content(@author.updated_at)
+    end
+
+    it 'displays the author id' do
+      visit "/authors/#{@author.id}"
+
+      expect(page).to have_content(@author.id)
+    end
   end
 end
