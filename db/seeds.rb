@@ -5,3 +5,12 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
+@jane_austen = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+@leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+@carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
+@book_1 = @carmen_maria_machado.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
+@book_2 = @carmen_maria_machado.books.create!(name: "In the Dream House", length: 321, in_print: true)
+@book_3 = @jane_austen.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
+@book_4 = @jane_austen.books.create!(name: "Pride and Prejudice", length: 387, in_print: true)
+@book_5 = @leslie_feinberg.books.create!(name: "Stone Butch Blues", length: 300, in_print: false)
+
