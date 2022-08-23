@@ -1,0 +1,6 @@
+<h1> Books </h1>
+<% @books.each do |book| %>
+<p>Name: <%= book.name %></p>
+<p>Length: <%= book.length %></p>
+<p>In_print?: <%= book.in_print %></p>
+<% end %>
