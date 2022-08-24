@@ -59,4 +59,21 @@ RSpec.describe 'the books index page' do
       end
     end
   end
+
+  describe 'when I visit any page on the site' do
+    describe 'I see a link at the top of the page that takes me to the author index' do
+      before :each do
+        @author = Author.create!(name: "Jane Austen", currently_alive: false)
+        @book = @author.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
+        @book_2 = @author.books.create!(name: "Sense and Sensibility", id: 2, length: 402, in_print: true)
+      end
+
+      it 'links to author index' do
+        visit "/books"
+        click_link "All Authors"
+
+        expect(current_path).to eq("/authors")
+      end
+    end
+  end
 end

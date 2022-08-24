@@ -48,4 +48,21 @@ RSpec.describe 'the authors index page' do
       end
     end
   end
+
+  describe 'when I visit any page on the site' do
+    describe 'I see a link at the top of the page that takes me to the author index' do
+      before :each do
+        @jane_austen = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+        @carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
+      end
+
+      it 'links to author index' do
+        visit "/authors"
+        click_link "All Authors"
+
+        expect(current_path).to eq("/authors")
+      end
+    end
+  end
 end

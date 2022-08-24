@@ -1,5 +1,6 @@
 <%= link_to "Books by #{@author.name}", "/authors/#{@author.id}/books" %>
 <%= link_to "All Books", "/books" %>
+<%= link_to "All Authors", "/authors" %>
 <h1><%= @author.name %></h1>
 <p>Age when first book published: <%= @author.age_when_first_published %></p>
 <p>Living?: <%= @author.currently_alive %></p>
