@@ -27,5 +27,18 @@ RSpec.describe 'the books index page' do
 
       expect(page).to have_content(@book.in_print)
     end
+
+    it 'displays created at and updated at time stamps' do
+      visit "/books"
+      
+      expect(page).to have_content(@book.created_at)
+      expect(page).to have_content(@book.updated_at)
+    end
+
+    it 'displays the book id' do
+      visit "/books"
+
+      expect(page).to have_content(@book.id)
+    end
   end
 end

@@ -1,6 +1,9 @@
-<h1> Books </h1>
+<h1>Books by <%= "#{@author.name}"%> </h1>
 <% @books.each do |book| %>
-<p>Name: <%= book.name %></p>
+<h3>Name: <%= book.name %></h3>
 <p>Length: <%= book.length %></p>
 <p>In_print?: <%= book.in_print %></p>
+<p>Created At: <%= book.created_at %></p>
+<p>Updated At: <%= book.updated_at %></p>
+<p>ID: <%= book.id %></p>
 <% end %>
