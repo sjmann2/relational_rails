@@ -1,3 +1,4 @@
+<%= link_to "All Books", "/books" %>
 <h1>Books by <%= "#{@author.name}"%> </h1>
 <% @books.each do |book| %>
 <h3>Name: <%= book.name %></h3>
@@ -7,3 +8,4 @@
 <p>Updated At: <%= book.updated_at %></p>
 <p>ID: <%= book.id %></p>
 <% end %>
+

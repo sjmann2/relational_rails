@@ -48,4 +48,22 @@ RSpec.describe 'the author books index page' do
       expect(page).to have_content(@book_2.id)
     end
   end
+    
+  describe 'when I visit any page on the site' do
+    describe 'I see a link at the top of the page that takes me to the book index' do
+      before :each do
+        @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
+        @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", id: 1, length: 380, in_print: true)
+        @book_2 = @author_1.books.create!(name: "In the Dream House", id: 2, length: 321, in_print: true)
+      end
+
+      it 'links to book index' do
+        visit "/authors/#{@author_1.id}/books"
+
+        click_link "All Books"
+
+        expect(current_path).to eq("/books")
+      end
+    end
+  end
 end
