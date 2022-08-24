@@ -5,3 +5,4 @@
 <p>Updated At: <%= @author.updated_at %></p>
 <p>ID: <%= @author.id %></p>
 <p>Total number of books for <%= @author.name %>: <%= @author.book_count %></p>
+<%= link_to "Books by #{@author.name}", "/authors/#{@author.id}/books" %>
