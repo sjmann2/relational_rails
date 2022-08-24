@@ -73,7 +73,6 @@ RSpec.describe 'the authors show page' do
         click_link "Books by #{@author.name}"
 
         expect(current_path).to eq("/authors/#{@author.id}/books")
-        # click_link "/authors/#{author.id}/books"
       end
     end
   end
