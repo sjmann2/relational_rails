@@ -76,4 +76,23 @@ RSpec.describe 'the books index page' do
       end
     end
   end
+
+#   As a visitor
+# When I visit the book index
+# Then I only see records where the boolean column is `true`
+  describe 'book index only shows true records' do
+    before :each do
+      @author_1 = Author.create!(name: "Jane Austen", currently_alive: false)
+      @book_1 = @author_1.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
+      @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+      @book_2 = @author_2.books.create!(name: "Stone Butch Blues", length: 300, in_print: false)
+    end
+
+    it 'lists only books that are in print' do
+      visit "/books"
+
+      expect(page).to have_content(@book_1.name)
+      expect(page).to_not have_content(@book_2.name)
+    end
+  end
 end
