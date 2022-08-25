@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-RSpec.describe 'the Author creation' do
-  it 'links to the new page from the Author index' do
+RSpec.describe 'the author creation' do
+  it 'links to the new page from the author index' do
     visit "/authors"
 
     click_link("New Author")
