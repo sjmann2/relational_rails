@@ -1,13 +1,3 @@
-# As a visitor
-# When I visit a Author Book Index page
-# Then I see a link to add a new adoptable book for that author "Create Book"
-# When I click the link
-# I am taken to '/authors/:author_id/books/new' where I see a form to add a new adoptable book
-# When I fill in the form with the book’s attributes:
-# And I click the button "Create Book"
-# Then a `POST` request is sent to '/authors/:author_id/books',
-# a new book object/row is created for that author,
-# and I am redirected to the Author Books Index page where I can see the new book listed
 require 'rails_helper'
 
 RSpec.describe 'the book creation' do
