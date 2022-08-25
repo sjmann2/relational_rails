@@ -60,7 +60,7 @@ RSpec.describe 'the authors index page' do
       it 'links to author index' do
         visit "/authors"
         click_link "All Authors"
-
+        
         expect(current_path).to eq("/authors")
       end
     end
