@@ -1,0 +1,10 @@
+<%= form_with url: '/authors', method: :post, local: true do |form| %>
+<%= form.label :name %>
+<%= form.text_field :name %>
+<%= form.label :currently_alive %>
+<%= form.text_field :currently_alive %>
+<%= form.label :age_when_first_published %>
+<%= form.text_field :age_when_first_published %>
+
+<%= form.submit "Create Author" %>
+<% end %>
