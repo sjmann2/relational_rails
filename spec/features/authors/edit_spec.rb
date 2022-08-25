@@ -1,9 +1,3 @@
-
-# When I fill out the form with updated information
-# And I click the button to submit the form
-# Then a `PATCH` request is sent to '/authors/:id',
-# the author’s info is updated,
-# and I am redirected to the Author’s Show page where I see the author’s updated info
 require 'rails_helper'
 
 RSpec.describe 'the author edit' do
