@@ -11,7 +11,13 @@ class AuthorsController < ApplicationController
   end
 
   def create
-    author = Author.create!(name: params[:name], currently_alive: params[:currently_alive], age_when_first_published: params[:age_when_first_published])
+    author = Author.create!(author_params)
     redirect_to '/authors'
+  end
+
+  def author_params
+    params.permit(:name)
+    params.permit(:currently_alive)
+    params.permit(:name)
   end
 end
