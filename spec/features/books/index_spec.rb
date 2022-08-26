@@ -77,9 +77,6 @@ RSpec.describe 'the books index page' do
     end
   end
 
-#   As a visitor
-# When I visit the book index
-# Then I only see records where the boolean column is `true`
   describe 'book index only shows true records' do
     before :each do
       @author_1 = Author.create!(name: "Jane Austen", currently_alive: false)
