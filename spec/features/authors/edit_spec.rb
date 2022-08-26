@@ -40,32 +40,30 @@ RSpec.describe 'the author edit' do
   describe 'When I visit the author index page' do
     describe 'Next to every author, I see a link to edit that authors info' do
       before :each do
-        @jane_austen = Author.create!(name: "Jane Auste", currently_alive: false, age_when_first_published: 21)
-        @leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
-        @carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
+        @author = Author.create!(name: "Jane Auste", currently_alive: false, age_when_first_published: 21)
       end
 
       it 'links to the edit page' do
         visit "/authors"
-        save_and_open_page
-        click_link "Update #{@jane_austen.name}"
-
-        expect(current_path).to eq("/authors/#{@jane_austen.id}/edit")
-      end
-
-      xit 'can edit the authors information' do
-        visit "/authors"
-
+        
         expect(page).to have_content("Jane Auste")
 
-        click_link("Update Author")
+        click_link "Update #{@author.name}"
 
-        expect(current_path).to eq("/authors/#{@jane_austen.id}/edit")
+        expect(current_path).to eq("/authors/#{@author.id}/edit")
+      end
+
+      it 'can edit the authors information' do
+        visit "/authors"
+
+        click_link("Update #{@author.name}")
+
+        expect(current_path).to eq("/authors/#{@author.id}/edit")
 
         fill_in("Name", with: "Jane Austen")
         click_button("Update Author")
 
-        expect(current_path).to eq("/authors")
+        expect(current_path).to eq("/authors/#{@author.id}")
       end
     end
   end
