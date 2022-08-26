@@ -1,6 +1,7 @@
 <%= link_to "All Books", "/books" %>
 <%= link_to "All Authors", "/authors" %>
 <%= link_to "Create Book",  "/authors/#{@author.id}/books/new" %>
+<%= link_to "Sort Books Alphabetically", "/authors/#{@author.id}/books?sort=name"%>
 <h1>Books by <%= "#{@author.name}"%> </h1>
 <% @books.each do |book| %>
 <h3>Name: <%= book.name %></h3>
