@@ -82,12 +82,7 @@ RSpec.describe 'the author books index page' do
       end
     end
   end
-
-  #   As a visitor
-# When I visit the Author's books Index Page
-# Then I see a link to sort books in alphabetical order
-# When I click on the link
-# I'm taken back to the Author’s books Index Page where I see all of the author’s books in alphabetical order
+  
   describe 'the index page has a link to sort books in alphabetical order' do
     before :each do
       @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
