@@ -82,4 +82,39 @@ RSpec.describe 'the author books index page' do
       end
     end
   end
+
+  #   As a visitor
+# When I visit the Author's books Index Page
+# Then I see a link to sort books in alphabetical order
+# When I click on the link
+# I'm taken back to the Author’s books Index Page where I see all of the author’s books in alphabetical order
+  describe 'the index page has a link to sort books in alphabetical order' do
+    before :each do
+      @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
+      @book_2 = @author_1.books.create!(name: "In the Dream House", length: 321, in_print: true)
+      @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
+      @book_3 = @author_1.books.create!(name: "The Low Low Woods", length: 125, in_print: true )
+    end
+
+    it 'has a link to sort books alphabetically' do
+      visit "/authors/#{@author_1.id}/books"
+      click_link("Sort Books Alphabetically")
+      
+      expect(current_path).to eq("/authors/#{@author_1.id}/books")
+    end
+
+    it 'displays books alphabetically by name' do
+      visit "/authors/#{@author_1.id}/books"
+
+      expect(@book_1.name).to_not appear_before(@book_2.name)
+      expect(@book_3.name).to_not appear_before(@book_1.name)
+
+      click_link("Sort Books Alphabetically")
+
+      expect(@book_1.name).to appear_before(@book_2.name)
+      expect(@book_2.name).to appear_before(@book_3.name)
+      
+      expect(current_path).to eq("/authors/#{@author_1.id}/books")
+    end
+  end
 end
