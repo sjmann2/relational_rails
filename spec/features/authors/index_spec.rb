@@ -24,13 +24,22 @@ RSpec.describe 'the authors index page' do
       expect(page).to have_content(@carmen_maria_machado.created_at)
     end
     
-    xit 'displays a list of authors ordered by most recently created first' do
-      #orderly test
-      visit "/authors"
+    describe 'records are ordered by most recently created first' do
+      before :each do
+        @jane_austen = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+        @carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
+      end
 
-      let(:leslie_feinberg) {"Leslie Feinberg"}
+      it 'displays a list of authors ordered by most recently created first' do
+        visit "/authors"
+        
+        expect(@jane_austen.name).to appear_before(@leslie_feinberg.name)
+        expect(@leslie_feinberg.name).to appear_before(@carmen_maria_machado.name)
+      end
     end 
   end
+    
   describe 'when I visit any page on the site' do
     describe 'I see a link at the top of the page that takes me to the book index' do
       before :each do

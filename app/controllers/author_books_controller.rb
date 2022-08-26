@@ -1,7 +1,7 @@
 class AuthorBooksController < ApplicationController
   def index
     @author = Author.find(params[:author_id])
-    @books = @author.books
+    @books = @author.books.order(params[:sort])
   end
 
   def new
