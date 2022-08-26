@@ -6,6 +6,7 @@
 <% @authors.each do |author| %>
 <h3><%= author.name %></h3>
 <p><%= author.created_at %></p>
+<%= link_to "Update #{author.name}", "/authors/#{author.id}/edit" %>
 <% end %>
 
 
