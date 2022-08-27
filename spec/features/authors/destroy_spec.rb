@@ -28,12 +28,6 @@ RSpec.describe 'destroying an author' do
     end
   end
 
-
-# As a visitor
-# When I visit the author index page
-# Next to every author, I see a link to delete that author
-# When I click the link
-# I am returned to the Author Index Page where I no longer see that author
   describe 'deleting an author from the index page' do
     before :each do
       @author = Author.create!(name: "Toni Morrison", currently_alive: false, age_when_first_published: 39)
