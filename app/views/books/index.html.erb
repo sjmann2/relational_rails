@@ -10,5 +10,6 @@
     <p>Updated At: <%= book.updated_at %></p>
     <p>ID: <%= book.id %></p>
     <%= link_to "Update Book", "/books/#{book.id}/edit" %>
+    <%= link_to "Delete #{book.name}", "books/#{book.id}", method: :delete %>
   <% end %>
 <% end %>
