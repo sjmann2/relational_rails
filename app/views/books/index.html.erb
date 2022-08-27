@@ -9,5 +9,6 @@
     <p>Created At: <%= book.created_at %></p>
     <p>Updated At: <%= book.updated_at %></p>
     <p>ID: <%= book.id %></p>
+    <%= link_to "Update Book", "/books/#{book.id}/edit" %>
   <% end %>
 <% end %>

@@ -33,7 +33,7 @@ RSpec.describe 'the authors index page' do
 
       it 'displays a list of authors ordered by most recently created first' do
         visit "/authors"
-        
+       
         expect(@jane_austen.name).to appear_before(@leslie_feinberg.name)
         expect(@leslie_feinberg.name).to appear_before(@carmen_maria_machado.name)
       end

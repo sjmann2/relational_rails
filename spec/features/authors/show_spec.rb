@@ -54,10 +54,6 @@ RSpec.describe 'the authors show page' do
     end
   end
 
-  #     As a visitor
-# When I visit a author show page ('/authors/:id')
-# Then I see a link to take me to that author’s `books` page ('/authors/:id/books')
-
   describe 'when I visit author show page' do
     describe 'I see a link to take me to that authors books page' do
       before :each do
