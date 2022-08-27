@@ -25,8 +25,8 @@ RSpec.describe 'destroying a book' do
 
     it 'can delete a book from the index page' do
       visit "/books"
-
-      click_link("Delete #{@book.name}")
+      
+      click_link("Delete Book")
 
       expect(current_path).to eq("/books")
       expect(page).to_not have_content("Toni Morrison")
