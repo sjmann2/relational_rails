@@ -1,10 +1,3 @@
-# As a visitor
-# When I visit a Author show page
-# Then I see a link to delete the Author
-# When I click the link "Delete Author"
-# Then a 'DELETE' request is sent to '/authors/:id',
-# the author is deleted, and all book records are deleted
-# and I am redirected to the author index page where I no longer see this author
 require 'rails_helper'
 
 RSpec.describe 'destroying an author' do
