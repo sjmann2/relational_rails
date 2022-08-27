@@ -23,7 +23,8 @@ RSpec.describe Author, type: :model do
         @author_3 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
       end
 
-      it 'sorts authors by most recently created' do
+      xit 'sorts authors by most recently created' do
+        
         expect(Author.by_created_at.to_a).to eq([@author_1, @author_2, @author_3])
       end
     end
