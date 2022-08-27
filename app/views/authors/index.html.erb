@@ -4,9 +4,9 @@
 
 <h1>Authors</h1>
 <% @authors.each do |author| %>
-<h3><%= author.name %></h3>
-<p><%= author.created_at %></p>
-<%= link_to "Update #{author.name}", "/authors/#{author.id}/edit" %>
+  <h3><%= author.name %></h3>
+  <p><%= author.created_at %></p>
+  <%= link_to "Update #{author.name}", "/authors/#{author.id}/edit" %>
 <% end %>
 
 
