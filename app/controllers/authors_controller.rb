@@ -1,6 +1,11 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.by_created_at
+    if params[:sort]
+      @authors = Author.by_book_count
+      require 'pry' ; binding.pry
+    else
+      @authors = Author.by_created_at
+    end
   end
 
   def show
