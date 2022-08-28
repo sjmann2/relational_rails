@@ -112,12 +112,7 @@ RSpec.describe 'the author books index page' do
       expect(current_path).to eq("/authors/#{@author_1.id}/books")
     end
   end
-#   As a visitor
-# When I visit the Author's book Index Page
-# I see a form that allows me to input a number value
-# When I input a number value and click the submit button that reads 
-# 'Only return records with more than `number` of `column_name`'
-# Then I am brought back to the current index page with only the records that meet that threshold shown.
+
   describe 'display records over a given threshold' do
     before :each do
       @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
