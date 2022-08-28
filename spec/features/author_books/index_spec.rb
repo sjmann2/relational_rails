@@ -3,11 +3,11 @@ require 'rails_helper'
 RSpec.describe 'the author books index page' do
   describe 'attributes' do
     before :each do
-      @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
-      @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", id: 1, length: 380, in_print: true)
-      @book_2 = @author_1.books.create!(name: "In the Dream House", id: 2, length: 321, in_print: true)
-      @author_2 = Author.create!(name: "Jane Austen", currently_alive: false)
-      @book_3 = @author_2.books.create!(name: "Sense and Sensibility", id: 4, length: 402, in_print: true)
+      @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
+      @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
+      @book_2 = @author_1.books.create!(name: "In the Dream House", length: 321, in_print: true)
+      @author_2 = Author.create!(name: "Jane Austen", currently_alive: false,  age_when_first_published: 21)
+      @book_3 = @author_2.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
     end
 
     it 'displays the name of the book' do
@@ -52,9 +52,9 @@ RSpec.describe 'the author books index page' do
   describe 'when I visit any page on the site' do
     describe 'I see a link at the top of the page that takes me to the book index' do
       before :each do
-        @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
-        @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", id: 1, length: 380, in_print: true)
-        @book_2 = @author_1.books.create!(name: "In the Dream House", id: 2, length: 321, in_print: true)
+        @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
+        @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
+        @book_2 = @author_1.books.create!(name: "In the Dream House", length: 321, in_print: true)
       end
 
       it 'links to book index' do
@@ -69,9 +69,9 @@ RSpec.describe 'the author books index page' do
   describe 'when I visit any page on the site' do
     describe 'I see a link at the top of the page that takes me to the author index' do
       before :each do
-        @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
-        @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", id: 1, length: 380, in_print: true)
-        @book_2 = @author_1.books.create!(name: "In the Dream House", id: 2, length: 321, in_print: true)
+        @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 21)
+        @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
+        @book_2 = @author_1.books.create!(name: "In the Dream House", length: 321, in_print: true)
       end
 
       it 'links to author index' do
@@ -85,7 +85,7 @@ RSpec.describe 'the author books index page' do
   
   describe 'the index page has a link to sort books in alphabetical order' do
     before :each do
-      @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true)
+      @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
       @book_2 = @author_1.books.create!(name: "In the Dream House", length: 321, in_print: true)
       @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
       @book_3 = @author_1.books.create!(name: "The Low Low Woods", length: 125, in_print: true )
@@ -110,6 +110,37 @@ RSpec.describe 'the author books index page' do
       expect(@book_2.name).to appear_before(@book_3.name)
       
       expect(current_path).to eq("/authors/#{@author_1.id}/books")
+    end
+  end
+#   As a visitor
+# When I visit the Author's book Index Page
+# I see a form that allows me to input a number value
+# When I input a number value and click the submit button that reads 
+# 'Only return records with more than `number` of `column_name`'
+# Then I am brought back to the current index page with only the records that meet that threshold shown.
+  describe 'display records over a given threshold' do
+    before :each do
+      @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
+      @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 302, in_print: true)
+      @book_2 = @author_1.books.create!(name: "In the Dream House", length: 225, in_print: true)
+      @book_3 = @author_1.books.create!(name: "The Low Low Woods", length: 189, in_print: true)
+    end
+
+    it 'returns records based on the number inputted' do
+      visit "authors/#{@author_1.id}/books"
+
+      expect(page).to have_content("Her Body and Other Parties")
+      expect(page).to have_content("In the Dream House")
+      expect(page).to have_content("The Low Low Woods")
+      
+      fill_in("Length", with: "250")
+
+      click_button("Only return books longer than 'length'")
+
+      expect(current_path).to eq("/authors/#{@author_1.id}/books")
+      expect(page).to have_content("Her Body and Other Parties")
+      expect(page).to_not have_content("The Low Low Woods")
+      expect(page).to_not have_content("In the Dream House")
     end
   end
 end

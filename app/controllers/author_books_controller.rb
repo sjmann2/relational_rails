@@ -1,7 +1,11 @@
 class AuthorBooksController < ApplicationController
   def index
     @author = Author.find(params[:author_id])
-    @books = @author.books.order(params[:sort])
+    if params[:length]
+      @books = @author.sort_by_length(params[:length])
+    else
+      @books = @author.books.order(params[:sort])    
+    end
   end
 
   def new
@@ -14,7 +18,7 @@ class AuthorBooksController < ApplicationController
     
     redirect_to "/authors/#{@author.id}/books"
   end
-
+  
   def book_params
     params.permit(:name, :length, :in_print)
   end

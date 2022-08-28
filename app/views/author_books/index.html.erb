@@ -2,6 +2,12 @@
 <%= link_to "All Authors", "/authors" %>
 <%= link_to "Create Book",  "/authors/#{@author.id}/books/new" %>
 <%= link_to "Sort Books Alphabetically", "/authors/#{@author.id}/books?sort=name"%>
+<%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  <%= form.label :length %>
+  <%= form.text_field :length %>
+  <%= form.submit "Only return books longer than 'length'" %>
+<% end %>
+
 <h1>Books by <%= "#{@author.name}"%> </h1>
 <% @books.each do |book| %>
 <h3>Name: <%= book.name %></h3>
@@ -13,4 +19,7 @@
 <%= link_to "Update Book", "/books/#{book.id}/edit" %>
 <%= link_to "Delete Book", "/books/#{book.id}", method: :delete %>
 <% end %>
-
+method input value patch
+params[:method]
+if params[:threshold]
+class="d-flex align-items-center justify-content-center flex-column text-light m-3"

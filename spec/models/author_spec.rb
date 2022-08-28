@@ -27,5 +27,18 @@ RSpec.describe Author, type: :model do
         expect(Author.by_created_at.to_a).to eq([@author_1, @author_2, @author_3])
       end
     end
+
+    describe '#sort_by_length' do
+      before :each do
+        @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
+        @book_1 = @author_1.books.create!(name: "Her Body and Other Parties", length: 302, in_print: true)
+        @book_2 = @author_1.books.create!(name: "In the Dream House", length: 225, in_print: true)
+        @book_3 = @author_1.books.create!(name: "The Low Low Woods", length: 189, in_print: true)
+      end
+
+      it 'returns records greater than length specified' do
+        expect(@author_1.sort_by_length("250")).to eq([@book_1])
+      end
+    end
   end
 end
