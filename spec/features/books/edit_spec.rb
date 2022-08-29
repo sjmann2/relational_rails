@@ -26,7 +26,7 @@ RSpec.describe 'the book edit' do
 
       fill_in("Name", with: "The Bluest Eye")
       fill_in("Length", with: "244")
-      fill_in("In print", with: "true")
+      choose("In print")
       click_button("Update Book")
 
       expect(current_path).to eq("/books/#{@book.id}")
@@ -61,7 +61,7 @@ RSpec.describe 'the book edit' do
 
       fill_in("Name", with: "The Bluest Eye")
       fill_in("Length", with: "244")
-      fill_in("In print", with: "false")
+      choose("Out of print")
       click_button("Update Book")
 
       expect(current_path).to eq("/books/#{@book.id}")
