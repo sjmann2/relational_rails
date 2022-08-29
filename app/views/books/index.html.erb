@@ -2,7 +2,6 @@
 <%= link_to "All Authors", "/authors" %>
 <h1>Books</h2>
 <% @books.each do |book| %>
-  <% if book.in_print %>
     <h3><%= book.name %></h3>
     <p>Length: <%= book.length %></p>
     <p>In Print?: <%= book.in_print %></p>
@@ -11,5 +10,4 @@
     <p>ID: <%= book.id %></p>
     <%= link_to "Update Book", "/books/#{book.id}/edit" %>
     <%= link_to "Delete Book", "books/#{book.id}", method: :delete %>
-  <% end %>
 <% end %>
