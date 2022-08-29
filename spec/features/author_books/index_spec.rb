@@ -130,7 +130,7 @@ RSpec.describe 'the author books index page' do
       
       fill_in("Length", with: "250")
 
-      click_button("Only return books longer than 'length'")
+      click_button("Display books longer than 'length'")
 
       expect(current_path).to eq("/authors/#{@author_1.id}/books")
       expect(page).to have_content("Her Body and Other Parties")

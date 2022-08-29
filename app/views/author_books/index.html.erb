@@ -3,9 +3,10 @@
 <%= link_to "Create Book",  "/authors/#{@author.id}/books/new" %>
 <%= link_to "Sort Books Alphabetically", "/authors/#{@author.id}/books?sort=name"%>
 <%= form_with url: "/authors/#{@author.id}/books", method: :get, local: true do |form| %>
+  
   <%= form.label :length %>
   <%= form.text_field :length %>
-  <%= form.submit "Only return books longer than 'length'" %>
+  <%= form.submit "Display books longer than 'length'" %>
 <% end %>
 
 <h1>Books by <%= "#{@author.name}"%> </h1>
