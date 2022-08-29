@@ -10,6 +10,7 @@
   <p>Number of Books: <%= author.book_count %></p>
   <%= link_to "Update #{author.name}", "/authors/#{author.id}/edit" %>
   <%= link_to "Delete #{author.name}", "/authors/#{author.id}", method: :delete %>
+  <%= link_to "All Books by #{author.name}", "/authors/#{author.id}/books" %>
 <% end %>
 
 

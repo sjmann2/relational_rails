@@ -115,4 +115,18 @@ RSpec.describe 'the authors index page' do
       expect(page).to have_content("1")
     end
   end
+
+  describe 'it links to the author show page' do
+    it 'has a link to all books by that author' do
+      author = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+      book_1 = author.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
+      book_2 = author.books.create!(name: "Pride and Prejudice", length: 387, in_print: true)
+
+      visit "/authors"
+
+      click_link("All Books by #{author.name}")
+
+      expect(current_path).to eq("/authors/#{author.id}/books")
+    end
+  end
 end
