@@ -22,7 +22,7 @@ RSpec.describe 'the author edit' do
     visit "/authors/#{author.id}/edit"
 
     fill_in("Name", with: "George Orwell")
-    fill_in("Currently alive", with: "false")
+    choose("Deceased")
     fill_in("Age when first published", with: "30")
     click_button("Update Author")
 
@@ -32,11 +32,6 @@ RSpec.describe 'the author edit' do
     expect(page).to have_content("30")
   end
 
-  # As a visitor
-  # When I visit the author index page
-  # Next to every author, I see a link to edit that author’s info
-  # When I click the link
-  # I should be taken to that author’s edit page where I can update its information just like in User Story 14
   describe 'When I visit the author index page' do
     describe 'Next to every author, I see a link to edit that authors info' do
       before :each do
