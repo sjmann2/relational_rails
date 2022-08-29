@@ -116,12 +116,3 @@ RSpec.describe 'the authors index page' do
     end
   end
 end
-# Sort Parents by Number of Children 
-
-# As a visitor
-# When I visit the Parents Index Page
-# Then I see a link to sort parents by the number of `child_table_name` they have
-# When I click on the link
-# I'm taken back to the Parent Index Page where I see all of the parents
-# in order of their count of `child_table_name` (highest to lowest) And, 
-# I see the number of children next to each parent name
