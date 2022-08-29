@@ -13,8 +13,8 @@ RSpec.describe 'the author creation' do
     visit '/authors/new'
 
     fill_in('Name', with: 'Charlotte Bronte')
-    fill_in('Currently alive', with: 'false')
     fill_in('Age when first published', with: 20)
+    choose('Currently alive')
     click_button('Create Author')
     
     expect(current_path).to eq('/authors')
