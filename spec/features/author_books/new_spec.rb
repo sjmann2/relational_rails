@@ -19,12 +19,13 @@ RSpec.describe 'the book creation' do
 
     fill_in('Name', with: "The Dispossessed")
     fill_in('Length', with: 284)
-    fill_in('In print', with: true)
+    
+    choose('Out of print')
     click_button('Create Book')
 
     expect(current_path).to eq("/authors/#{@author.id}/books")
     expect(page).to have_content('The Dispossessed')
     expect(page).to have_content('284')
-    expect(page).to have_content('true')
+    expect(page).to have_content('false')
   end
 end

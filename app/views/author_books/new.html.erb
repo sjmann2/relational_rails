@@ -3,8 +3,12 @@
   <%= form.text_field :name %>
   <%= form.label :length %>
   <%= form.text_field :length %>
-  <%= form.label :in_print %>
-  <%= form.text_field :in_print %>
+
+  <%= form.label :in_print_true, "In print" %>
+  <%= form.radio_button :in_print, "true" %>
+
+  <%= form.label :in_print_false, "Out of print" %>
+  <%= form.radio_button :in_print, "false" %>
 
   <%= form.submit "Create Book" %>
   <% end %>
