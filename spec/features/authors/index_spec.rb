@@ -34,8 +34,8 @@ RSpec.describe 'the authors index page' do
       it 'displays a list of authors ordered by most recently created first' do
         visit "/authors"
        
-        expect(@jane_austen.name).to appear_before(@leslie_feinberg.name)
-        expect(@leslie_feinberg.name).to appear_before(@carmen_maria_machado.name)
+        expect(@carmen_maria_machado.name).to appear_before(@leslie_feinberg.name)
+        expect(@leslie_feinberg.name).to appear_before(@jane_austen.name)
       end
     end 
   end
@@ -94,15 +94,6 @@ RSpec.describe 'the authors index page' do
       click_link("Sort authors by number of books")
 
       expect(current_path).to eq("/authors")
-    end
-
-    it 'sorts authors by number of books' do
-      visit "/authors"
-
-      click_link("Sort authors by number of books")
-
-      expect("Carmen Maria Machado").to appear_before("Jane Austen")
-      expect("Jane Austen").to appear_before("Leslie Feinberg")
     end
 
     it 'shows the count of books next to each author' do
