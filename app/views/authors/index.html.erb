@@ -1,6 +1,7 @@
 <%= button_to "All Books", "/books", method: :get %>
 <%= button_to "All Authors", "/authors", method: :get %>
 <%= button_to "New Author", "/authors/new", method: :get %>
+
 <%= form_with url: "/authors", method: :get, local: true do |form| %>
   <%= form.label :search %>
   <%= form.text_field :search %>
