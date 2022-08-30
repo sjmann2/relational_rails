@@ -75,38 +75,6 @@ RSpec.describe 'the authors index page' do
     end
   end
 
-  describe 'I see a link to sort authors by the number of books they have' do
-    before :each do
-      @jane_austen = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
-      @leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
-      @carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
-      @book_1 = @carmen_maria_machado.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
-      @book_2 = @carmen_maria_machado.books.create!(name: "In the Dream House", length: 321, in_print: true)
-      @book_3 = @carmen_maria_machado.books.create!(name: "The Low Low Woods", length: 189, in_print: true)
-      @book_3 = @jane_austen.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
-      @book_4 = @jane_austen.books.create!(name: "Pride and Prejudice", length: 387, in_print: true)
-      @book_5 = @leslie_feinberg.books.create!(name: "Stone Butch Blues", length: 300, in_print: false)
-    end
-
-    it 'displays a link that sorts authors by number of books' do
-      visit "/authors"
-
-      click_link("Sort authors by number of books")
-
-      expect(current_path).to eq("/authors")
-    end
-
-    it 'shows the count of books next to each author' do
-      visit "/authors"
-
-      click_link("Sort authors by number of books")
-
-      expect(page).to have_content("3")
-      expect(page).to have_content("2")
-      expect(page).to have_content("1")
-    end
-  end
-
   describe 'it links to the author show page' do
     it 'has a link to all books by that author' do
       author = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
@@ -130,6 +98,7 @@ RSpec.describe 'the authors index page' do
           carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)           
 
           visit "/authors"
+          
           expect(page).to have_content("Jane Austen")
           expect(page).to have_content("Leslie Feinberg")
           expect(page).to have_content("Carmen Maria Machado")

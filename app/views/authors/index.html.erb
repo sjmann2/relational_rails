@@ -16,7 +16,6 @@
   <%= link_to "Delete #{author.name}", "/authors/#{author.id}", method: :delete %>
   <%= link_to "All Books by #{author.name}", "/authors/#{author.id}/books" %>
 <% end %>
-<p><%= link_to "Sort authors by number of books", "/authors?sort=true", method: :get %><p>
 
 
 
