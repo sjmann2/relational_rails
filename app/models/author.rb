@@ -12,4 +12,8 @@ class Author < ApplicationRecord
   def self.by_created_at
     Author.order(created_at: :asc)
   end
+
+  def self.by_book_count
+    Author.all.sort_by { |author| -author.book_count }
+  end
 end

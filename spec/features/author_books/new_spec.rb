@@ -9,7 +9,7 @@ RSpec.describe 'the book creation' do
   it 'links to the new page from the author books index' do
     visit "/authors/#{@author.id}/books"
 
-    click_link("Create Book")
+    click_button("Create Book")
 
     expect(current_path).to eq("/authors/#{@author.id}/books/new")
   end
@@ -19,12 +19,13 @@ RSpec.describe 'the book creation' do
 
     fill_in('Name', with: "The Dispossessed")
     fill_in('Length', with: 284)
-    fill_in('In print', with: true)
+    
+    choose('Out of print')
     click_button('Create Book')
 
     expect(current_path).to eq("/authors/#{@author.id}/books")
     expect(page).to have_content('The Dispossessed')
     expect(page).to have_content('284')
-    expect(page).to have_content('true')
+    expect(page).to have_content('false')
   end
 end

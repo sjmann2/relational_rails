@@ -1,5 +1,5 @@
-<%= link_to "All Books", "/books" %>
-<%= link_to "All Authors", "/authors" %>
+<%= button_to "All Books", "/books", method: :get %>
+<%= button_to "All Authors", "/authors", method: :get %>
 <%= link_to "Update Book", "/books/#{@book.id}/edit" %>
 <%= link_to "Delete Book", "/books/#{@book.id}", method: :delete %>
 <h1><%= @book.name %></h1>

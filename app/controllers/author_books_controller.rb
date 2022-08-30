@@ -19,6 +19,7 @@ class AuthorBooksController < ApplicationController
     redirect_to "/authors/#{@author.id}/books"
   end
   
+  private
   def book_params
     params.permit(:name, :length, :in_print)
   end

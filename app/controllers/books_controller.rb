@@ -1,6 +1,6 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.all
+    @books = Book.in_print?
   end
 
   def show
@@ -23,6 +23,7 @@ class BooksController < ApplicationController
     redirect_to '/books'
   end
 
+  private
   def book_params
     params.permit(:name, :length, :in_print)
   end

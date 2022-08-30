@@ -1,6 +1,10 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.by_created_at
+    if params[:sort]
+      @authors = Author.by_book_count
+    else
+      @authors = Author.by_created_at
+    end
   end
 
   def show
@@ -31,6 +35,7 @@ class AuthorsController < ApplicationController
     redirect_to '/authors'
   end
 
+  private
   def author_params
     params.permit(:name, :currently_alive, :age_when_first_published)
   end
