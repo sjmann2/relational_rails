@@ -13,5 +13,7 @@ class Author < ApplicationRecord
     Author.order(created_at: :desc)
   end
 
-  
+  def self.search_authors(author_name)
+    Author.where(name: "#{author_name.titleize}")
+  end
 end

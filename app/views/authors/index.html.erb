@@ -1,6 +1,11 @@
 <%= button_to "All Books", "/books", method: :get %>
 <%= button_to "All Authors", "/authors", method: :get %>
 <%= button_to "New Author", "/authors/new", method: :get %>
+<%= form_with url: "/authors", method: :get, local: true do |form| %>
+  <%= form.label :search %>
+  <%= form.text_field :search %>
+  <%= form.submit "Search Authors" %>
+<% end %>
 
 <h1>Authors</h1>
 <% @authors.each do |author| %>

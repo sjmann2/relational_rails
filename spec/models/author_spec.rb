@@ -30,15 +30,25 @@ RSpec.describe Author, type: :model do
     end
 
     describe 'class methods' do
-      describe '#by_created_at' do
-        before :each do
-          @author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
-          @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
-          @author_3 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
-        end
+      before :each do
+        @author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+        @author_3 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
+      end
 
+      describe 'by_created_at' do
         it 'sorts authors by most recently created' do
           expect(Author.by_created_at.to_a).to eq([@author_3, @author_2, @author_1])
+        end
+      end
+
+      describe 'search_authors' do
+        it 'filters results by keyword' do
+          expect(Author.search_authors("Leslie Feinberg")).to eq([@author_2])
+        end
+
+        it 'capitalizes the first letter of each word' do
+          expect(Author.search_authors("leslie feinberg")).to eq([@author_2])
         end
       end
     end

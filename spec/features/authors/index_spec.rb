@@ -120,4 +120,29 @@ RSpec.describe 'the authors index page' do
       expect(current_path).to eq("/authors/#{author.id}/books")
     end
   end
+
+  describe 'when I visit an index page I see a text box to filter results by keyword' do
+    describe 'when I type a keyword that is an exact match of one or more of my records' do
+      describe 'I press the search button and only see records that are an exact match' do
+        it 'filters results by keyword' do
+          jane_austen = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+          leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+          carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)           
+
+          visit "/authors"
+          expect(page).to have_content("Jane Austen")
+          expect(page).to have_content("Leslie Feinberg")
+          expect(page).to have_content("Carmen Maria Machado")
+
+          fill_in("Search", with: "Leslie Feinberg")
+          click_on("Search Authors")
+
+          expect(current_path).to eq("/authors")
+          expect(page).to have_content("Leslie Feinberg")
+          expect(page).to_not have_content("Jane Austen")
+          expect(page).to_not have_content("Carmen Maria Machado")
+        end
+      end
+    end
+  end
 end

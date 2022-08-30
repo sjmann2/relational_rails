@@ -1,6 +1,10 @@
 class AuthorsController < ApplicationController
   def index
-    @authors = Author.by_created_at
+    if params[:search]
+      @authors = Author.search_authors(params[:search])
+    else
+      @authors = Author.by_created_at
+    end
   end
 
   def show
