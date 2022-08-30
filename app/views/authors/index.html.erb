@@ -2,16 +2,20 @@
 <%= button_to "All Authors", "/authors", method: :get %>
 <%= button_to "New Author", "/authors/new", method: :get %>
 
+<%= form_with url: "/authors", method: :get, local: true do |form| %>
+  <%= form.label :search %>
+  <%= form.text_field :search %>
+  <%= form.submit "Search Authors" %>
+<% end %>
+
 <h1>Authors</h1>
 <% @authors.each do |author| %>
   <h3><%= author.name %></h3>
   <p><%= author.created_at %></p>
-  <p>Number of Books: <%= author.book_count %></p>
   <%= link_to "Update #{author.name}", "/authors/#{author.id}/edit" %>
   <%= link_to "Delete #{author.name}", "/authors/#{author.id}", method: :delete %>
   <%= link_to "All Books by #{author.name}", "/authors/#{author.id}/books" %>
 <% end %>
-<p><%= link_to "Sort authors by number of books", "/authors?sort=true", method: :get %><p>
 
 
 

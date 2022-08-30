@@ -1,7 +1,7 @@
 class AuthorsController < ApplicationController
   def index
-    if params[:sort]
-      @authors = Author.by_book_count
+    if params[:search]
+      @authors = Author.search_authors(params[:search])
     else
       @authors = Author.by_created_at
     end

@@ -16,18 +16,6 @@ RSpec.describe Author, type: :model do
       end
     end
 
-    describe '#by_created_at' do
-      before :each do
-        @author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
-        @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
-        @author_3 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
-      end
-
-      it 'sorts authors by most recently created' do
-        expect(Author.by_created_at.to_a).to eq([@author_1, @author_2, @author_3])
-      end
-    end
-
     describe '#sort_by_length' do
       before :each do
         @author_1 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
@@ -41,21 +29,27 @@ RSpec.describe Author, type: :model do
       end
     end
 
-    describe '#by_book_count' do
+    describe 'class methods' do
       before :each do
-        @jane_austen = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
-        @leslie_feinberg = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
-        @carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
-        @book_1 = @carmen_maria_machado.books.create!(name: "Her Body and Other Parties", length: 380, in_print: true)
-        @book_2 = @carmen_maria_machado.books.create!(name: "In the Dream House", length: 321, in_print: true)
-        @book_3 = @carmen_maria_machado.books.create!(name: "The Low Low Woods", length: 189, in_print: true)
-        @book_3 = @jane_austen.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
-        @book_4 = @jane_austen.books.create!(name: "Pride and Prejudice", length: 387, in_print: true)
-        @book_5 = @leslie_feinberg.books.create!(name: "Stone Butch Blues", length: 300, in_print: false)
+        @author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+        @author_3 = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31) 
       end
 
-      it 'sorts authors by book count from highest to lowest' do
-        expect(Author.by_book_count).to eq([@carmen_maria_machado, @jane_austen, @leslie_feinberg])
+      describe 'by_created_at' do
+        it 'sorts authors by most recently created' do
+          expect(Author.by_created_at.to_a).to eq([@author_3, @author_2, @author_1])
+        end
+      end
+
+      describe 'search_authors' do
+        it 'filters results by exact author name' do
+          expect(Author.search_authors("Leslie Feinberg")).to eq([@author_2])
+        end
+
+        it 'auto-capitalizes author name' do
+          expect(Author.search_authors("leslie feinberg")).to eq([@author_2])
+        end
       end
     end
   end

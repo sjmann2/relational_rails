@@ -1,6 +1,10 @@
 class BooksController < ApplicationController
   def index
-    @books = Book.in_print?
+    if params[:search]
+      @books = Book.search_books(params[:search])
+    else
+      @books = Book.in_print?
+    end
   end
 
   def show
