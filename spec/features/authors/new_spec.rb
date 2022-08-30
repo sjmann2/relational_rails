@@ -4,7 +4,7 @@ RSpec.describe 'the author creation' do
   it 'links to the new page from the author index' do
     visit "/authors"
 
-    click_link("New Author")
+    click_button("New Author")
 
     expect(current_path).to eq("/authors/new")
   end

@@ -59,7 +59,7 @@ RSpec.describe 'the author books index page' do
 
       it 'links to book index' do
         visit "/authors/#{@author_1.id}/books"
-        click_link "All Books"
+        click_button "All Books"
 
         expect(current_path).to eq("/books")
       end
@@ -76,7 +76,7 @@ RSpec.describe 'the author books index page' do
 
       it 'links to author index' do
         visit "/authors/#{@author_1.id}/books"
-        click_link "All Authors"
+        click_button "All Authors"
 
         expect(current_path).to eq("/authors")
       end
@@ -93,6 +93,7 @@ RSpec.describe 'the author books index page' do
 
     it 'has a link to sort books alphabetically' do
       visit "/authors/#{@author_1.id}/books"
+      
       click_link("Sort Books Alphabetically")
       
       expect(current_path).to eq("/authors/#{@author_1.id}/books")

@@ -1,5 +1,5 @@
-<%= link_to "All Books", "/books" %>
-<%= link_to "All Authors", "/authors" %>
+<%= button_to "All Books", "/books", method: :get %>
+<%= button_to "All Authors", "/authors", method: :get %>
 <h1>Books</h2>
 <% @books.each do |book| %>
     <h3><%= book.name %></h3>

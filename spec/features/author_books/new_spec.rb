@@ -9,7 +9,7 @@ RSpec.describe 'the book creation' do
   it 'links to the new page from the author books index' do
     visit "/authors/#{@author.id}/books"
 
-    click_link("Create Book")
+    click_button("Create Book")
 
     expect(current_path).to eq("/authors/#{@author.id}/books/new")
   end
