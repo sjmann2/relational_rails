@@ -3,9 +3,9 @@ require 'rails_helper'
 RSpec.describe 'the books index page' do
   describe 'attributes' do
     before :each do
-      @author = Author.create!(name: "Jane Austen", currently_alive: false)
-      @book = @author.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
-      @book_2 = @author.books.create!(name: "Sense and Sensibility", id: 2, length: 402, in_print: true)
+      @author = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+      @book = @author.books.create!(name: "Pride and Prejudice", length: 324, in_print: true)
+      @book_2 = @author.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
     end
 
     it 'displays the book name' do
@@ -45,9 +45,9 @@ RSpec.describe 'the books index page' do
   describe 'when I visit any page on the site' do
     describe 'I see a link at the top of the page that takes me to the book index' do
       before :each do
-        @author = Author.create!(name: "Jane Austen", currently_alive: false)
-        @book = @author.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
-        @book_2 = @author.books.create!(name: "Sense and Sensibility", id: 2, length: 402, in_print: true)
+        @author = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @book = @author.books.create!(name: "Pride and Prejudice", length: 324, in_print: true)
+        @book_2 = @author.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
       end
 
       it 'links to book index' do
@@ -63,9 +63,9 @@ RSpec.describe 'the books index page' do
   describe 'when I visit any page on the site' do
     describe 'I see a link at the top of the page that takes me to the author index' do
       before :each do
-        @author = Author.create!(name: "Jane Austen", currently_alive: false)
-        @book = @author.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
-        @book_2 = @author.books.create!(name: "Sense and Sensibility", id: 2, length: 402, in_print: true)
+        @author = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @book = @author.books.create!(name: "Pride and Prejudice", length: 324, in_print: true)
+        @book_2 = @author.books.create!(name: "Sense and Sensibility", length: 402, in_print: true)
       end
 
       it 'links to author index' do
@@ -79,8 +79,8 @@ RSpec.describe 'the books index page' do
 
   describe 'book index only shows true records' do
     before :each do
-      @author_1 = Author.create!(name: "Jane Austen", currently_alive: false)
-      @book_1 = @author_1.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
+      @author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+      @book_1 = @author_1.books.create!(name: "Pride and Prejudice", length: 324, in_print: true)
       @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
       @book_2 = @author_2.books.create!(name: "Stone Butch Blues", length: 300, in_print: false)
     end
