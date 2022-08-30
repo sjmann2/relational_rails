@@ -43,11 +43,11 @@ RSpec.describe Author, type: :model do
       end
 
       describe 'search_authors' do
-        it 'filters results by keyword' do
+        it 'filters results by exact author name' do
           expect(Author.search_authors("Leslie Feinberg")).to eq([@author_2])
         end
 
-        it 'capitalizes the first letter of each word' do
+        it 'auto-capitalizes author name' do
           expect(Author.search_authors("leslie feinberg")).to eq([@author_2])
         end
       end
