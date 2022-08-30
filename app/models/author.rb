@@ -13,8 +13,5 @@ class Author < ApplicationRecord
     Author.order(created_at: :desc)
   end
 
-  def self.by_book_count
-    require 'pry' ; binding.pry
-    Author.all.sort_by { |author| -author.book_count }
-  end
+  
 end
