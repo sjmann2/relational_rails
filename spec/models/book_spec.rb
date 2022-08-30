@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Book, type: :model do
   it {should belong_to :author}
 
-  describe 'instance methods' do
+  describe 'class methods' do
     describe 'in_print?' do
       it 'only displays books that are in print' do
         carmen_maria_machado = Author.create!(name: "Carmen Maria Machado", currently_alive: true, age_when_first_published: 31)
