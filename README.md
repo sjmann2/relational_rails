@@ -6,6 +6,7 @@ The reading_list database has two tables, authors and books. This is a one to ma
 ![Schema](https://user-images.githubusercontent.com/99758586/187223232-814a4862-a5c7-428c-a283-dc3126a8a167.png)
 
 https://dbdesigner.page.link/pscS1fLPPvBjnynZA
+
 ### Required versions
 - Ruby version 2.7.4
 - Rails version 5.2.8
@@ -15,8 +16,7 @@ https://dbdesigner.page.link/pscS1fLPPvBjnynZA
 - Clone your forked repository
 - Ensure your ruby and rails version match the required versions for this app
 - Run `bundle install`
-- Run `rails db:create`
-- Run `rails db:migrate`
+- Run `rails db:{drop,create,migrate,seed}`
 - Run `rails server`
 
 
