@@ -14,5 +14,18 @@ RSpec.describe Book, type: :model do
         expect(book_2.in_print?).to eq(false)
       end
     end
+
+    describe 'search_books' do
+      before :each do
+        @author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+        @book_1 = @author_1.books.create!(name: "Pride and Prejudice", id: 1, length: 324, in_print: true)
+        @author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+        @book_2 = @author_2.books.create!(name: "Stone Butch Blues", length: 300, in_print: false)
+      end
+
+      it 'filters results by exact book name' do
+        expect(Book.search_books("Stone Butch Blues")).to eq([@book_2])
+      end
+    end
   end
 end

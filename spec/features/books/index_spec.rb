@@ -92,4 +92,29 @@ RSpec.describe 'the books index page' do
       expect(page).to_not have_content(@book_2.name)
     end
   end
+
+  describe 'when I visit an index page I see a text box to filter results by keyword' do
+    describe 'when I type a keyword that is an exact match of one or more of my records' do
+      describe "I press the search button and only see records that are an exact match" do
+        it 'filters results by keyword' do
+          author_1 = Author.create!(name: "Jane Austen", currently_alive: false, age_when_first_published: 21)
+          book_1 = author_1.books.create!(name: "Pride and Prejudice", length: 324, in_print: true)
+          author_2 = Author.create!(name: "Leslie Feinberg", currently_alive: false, age_when_first_published: 40)
+          book_2 = author_2.books.create!(name: "Stone Butch Blues", length: 300, in_print: true)
+
+          visit "/books"
+          
+          expect(page).to have_content("Pride and Prejudice")
+          expect(page).to have_content("Stone Butch Blues")
+
+          fill_in("Search", with: "Pride and Prejudice")
+          click_on("Search Books")
+
+          expect(current_path).to eq("/books")
+          expect(page).to have_content("Pride and Prejudice")
+          expect(page).to_not have_content("Stone Butch Blues")
+        end
+      end
+    end
+  end
 end
